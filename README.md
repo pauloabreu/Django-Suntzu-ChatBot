@@ -8,6 +8,9 @@ ChatBot simples desenvolvido com Python e o Natural Language Toolkit
 ![Badge](https://img.shields.io/badge/django%20rest-ff1709?style=for-the-badge&logo=django&logoColor=white)
 
 
+## Example
+<img alt="NextLevelWeek" title="#NextLevelWeek" src="./static/images/error-img.png" />
+
 ## Usage
 ```sh
 docker-compose up -d --build
