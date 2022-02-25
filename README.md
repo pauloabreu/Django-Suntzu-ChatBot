@@ -9,7 +9,7 @@ ChatBot simples desenvolvido com Python e o Natural Language Toolkit
 
 
 ## Example
-<img alt="NextLevelWeek" title="#NextLevelWeek" src="./static/images/example.png" />
+<img alt="Hi.." title="#Hi.." src="./static/images/example.png" />
 
 ## Usage
 ```sh
