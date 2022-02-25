@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+    
+{% block main %}
+
+    <div class="row">
+        	<div class="card border-0">
+        		<div class="card-body height3" style=" overflow:auto; ">
+        			<ul class="chat-list">
+        				<li class="in">
+        					<div class="chat-img">
+        						<img alt="Avtar" src="/static/images/logo-sm.png">
+        					</div>
+        					<div class="chat-body">
+        						<div class="chat-message">
+        							<h5>Suntzu Bot</h5>
+        							<p>What you're looking for?</p>
+        						</div>
+        					</div>
+        				</li>
+        		</div>
+        </div>
+       
+    </div>
+
+	<div class="footer position-fixed">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-11">
+					<input class="form-control" type="text" value="" placeholder="Mensagem.." id="my_message">
+				</div>
+				<div class="col-sm-1">
+					<button type="button" id="send_message" class="btn btn-primary btn-rounded waves-effect waves-light">Enviar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+
+        function send_message(){
+            if($("#my_message").val().length){
+                $.ajax({
+                    url: '/api/v1/respond',
+                    data: 'text='+$("#my_message").val(),
+                    type: 'GET',
+                    beforeSend: function(){
+                        var html = '';
+                        html += '<li class="out">';
+                        html += '<div class="chat-img">';
+                        html += '<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar6.png">';
+                        html += '</div>';
+                        html += '<div class="chat-body">';
+                        html += '<div class="chat-message">';
+                        html += '<h5>Admin</h5>';
+                        html += '<p>'+$('#my_message').val()+'</p>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</li>';
+                        $(".chat-list").append(html); 
+                        $(document).scrollTop($(document).height());
+                    },
+                    success: function(response){
+                        var html = '';
+                        html += '<li class="in">';
+                        html += '<div class="chat-img">';
+                        html += '<img alt="Avtar" src="/static/images/logo-sm.png">';
+                        html += '</div>';
+                        html += '<div class="chat-body">';
+                        html += '<div class="chat-message">';
+                        html += '<h5 class="name">Suntzu Bot</h5>';
+                        html += '<p>'+response+'</p>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</li>';
+                        $(".chat-list").append(html); 
+                        $(document).scrollTop($(document).height());
+                        $('#my_message').val("")
+                    }
+                });
+            }
+        }
+
+		$("#send_message").click(function() {
+            send_message();
+        });
+        $('#my_message').keyup(function(e){
+            if(e.keyCode == 13){
+                send_message();
+            }
+        });
+	</script>
+
+{% endblock%}

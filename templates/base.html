@@ -1,0 +1,114 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Suntzu ChatBot</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/preloader.min.css' %}" type="text/css">
+    <link href="{% static 'css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css">
+
+    <link href="{% static 'css/chat.css' %}" rel="stylesheet" type="text/css">
+
+    <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+</head>
+<body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark">
+    <header id="page-topbar">
+        <div class="navbar-header">
+            <div class="d-flex">
+                <!-- LOGO -->
+                <div class="navbar-brand-box">
+                    <a href="#" class="logo logo-dark">
+                        <span class="logo-sm">
+                            <img src="{% static 'images/logo-sm.png' %}" alt="" height="24">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="{% static 'images/logo-sm.png' %}" alt="" height="24"> <span class="logo-txt">Suntzu ChatBot</span>
+                        </span>
+                    </a>
+    
+                    <a href="#" class="logo logo-light">
+                        <span class="logo-sm">
+                            <img src="{% static 'images/logo-sm.png' %}" alt="" height="24">
+                            
+                        </span>
+                        <span class="logo-lg ">
+                            <img src="{% static 'images/logo-sm.png' %}" alt="" height="24"> <span class="logo-txt">Suntzu ChatBot</span>
+                        </span>
+                    </a>
+                </div>
+    
+                <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                    <i class="fa fa-fw fa-bars"></i>
+                </button>
+    
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="vertical-menu">
+        <div data-simplebar class="h-100">
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="metismenu list-unstyled" id="side-menu">
+                    
+                    <li>
+                        <a href="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            <span data-key="t-icons">ChatBot</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/config">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cpu"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                            <span data-key="t-icons">Reflections</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/about">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-gift"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                            <span data-key="t-icons">Sobre</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+    <!-- Left Sidebar End -->
+
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                {% block main %} {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- JAVASCRIPT -->
+    <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+    <script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+    <script src="{% static 'libs/feather-icons/feather.min.js' %}"></script>
+    <!-- pace js -->
+    <script src="{% static 'libs/pace-js/pace.min.js' %}"></script>
+
+    <!-- Plugins js-->
+    <script src="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+    <script src="{% static 'libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js' %}"></script>
+
+
+
+    <!-- App js -->
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

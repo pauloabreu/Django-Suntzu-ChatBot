@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="col-lg-12">
+    <div class="card">
+        <!-- end card header -->
+
+        <div class="card-body">
+            <div>
+                <h5 class="font-size-14 mb-3">Reflections</h5>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="choices-single-default" class="form-label font-size-13 text-muted">Reflection</label>
+                            <select class="form-control" data-trigger name="reflection_select" id="reflection_select" placeholder="Reflections..">
+                            </select>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="col-lg-8">
+                        <div class="mb-3">
+                            <label for="choices-single-no-search" class="form-label font-size-13 text-muted">Valor</label>
+                            <input class="form-control" type="text" value="" id="reflection_value">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1">
+                        <button id="save_reflections" type="button" class="btn btn-primary waves-effect waves-light">Salvar</button>
+                    </div>
+                    </div>
+
+                    
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- Single select input Example -->
+            
+        </div>
+        <!-- end card body -->
+    </div>
+    <!-- end card -->
+</div>
+
+<!--
+<div class="col-lg-12">
+    <div class="card">>
+
+        <div class="card-body">
+            <div>
+                <h5 class="font-size-14 mb-3">Pairs</h5>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="choices-single-default" class="form-label font-size-13 text-muted">Pair</label>
+                            <select class="form-control" data-trigger name="pair_select" id="pair_select" placeholder="Pairs..">
+                            </select>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="col-lg-8">
+                        <div class="mb-3">
+                            <label for="choices-single-no-search" class="form-label font-size-13 text-muted"><br></label>
+                            <input class="form-control" type="text" value="" id="pair_value">
+                        </div>
+                    </div>
+
+                    </div>
+
+                    
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- Single select input Example -->
+            
+        </div>
+        <!-- end card body -->
+    </div>
+    <!-- end card -->
+</div>-->
+
+<script>
+
+    function onLoadReflection(){
+        $.ajax({
+            url: '/api/v1/reflection',
+            type: 'GET',
+
+            success: function(reflections){
+                reflections.forEach(element => {
+                    $("#reflection_select").append($('<option>', {
+                        value: element.id,
+                        text: element.key
+                    }).attr('data-textval', element.value));
+                });
+
+                $("#reflection_value").val($("#reflection_select :selected").data("textval"));
+            }
+        });
+    }
+
+    function onLoadPair(){
+        $.ajax({
+            url: '/api/v1/pair/',
+            type: 'GET',
+            success: function(pairs){
+                pairs.forEach(element => {
+                    $("#pair_select").append($('<option>', {
+                        value: element.id,
+                        text: element.key
+                    }));
+                });
+            }
+        });
+    }
+    
+    function save_reflections(){
+        $.ajax({
+            url: '/api/v1/reflection/'+$("#reflection_select :selected").val()+'/',
+            type: 'PUT',
+            data: "id="+$("#reflection_select :selected").val()+"&value="+$("#reflection_value").val()+"&key="+$("#reflection_select :selected").text(),
+            success: function(response){
+                console.log(response);
+            }
+        });
+    }
+
+    function loadPairMessages(){
+        $.ajax({
+            url: '/api/v1/pair_message/'+$("#pair_select :selected").val()+"/",
+            type: 'GET',
+            success: function(pair_messages){
+                console.log()
+            }
+        });
+    }
+
+    $('#reflection_select').change(function(e) {
+        $("#reflection_value").val($("#reflection_select :selected").data("textval"));
+    });
+
+    $("#save_reflections").click(function() {
+        save_reflections();
+    });
+
+    $('#pair_select').change(function(e) {
+        loadPairMessages();
+    });
+
+    onLoadReflection();
+    onLoadPair();
+</script>
+
+{% endblock%}
